@@ -12,13 +12,13 @@ class NotesHandler {
 
   async postNoteHandler(request, h) {
     this._validator.validateNotePayload(request.payload);
-    const { title = "untitled", body, tags } = request.payload;
+    const { title = 'untitled', body, tags } = request.payload;
 
     const noteId = await this._service.addNote({ title, body, tags });
 
     const response = h.response({
-      status: "success",
-      message: "Catatan berhasil di tambahkan",
+      status: 'success',
+      message: 'Catatan berhasil di tambahkan',
       data: {
         noteId,
       },
@@ -30,7 +30,7 @@ class NotesHandler {
   async getNotesHandler() {
     const notes = await this._service.getNotes();
     return {
-      status: "success",
+      status: 'success',
       data: {
         notes,
       },
@@ -41,7 +41,7 @@ class NotesHandler {
     const { id } = request.params;
     const note = await this._service.getNoteById(id);
     return {
-      status: "success",
+      status: 'success',
       data: {
         note,
       },
@@ -55,8 +55,8 @@ class NotesHandler {
     await this._service.editNoteById(id, request.payload);
 
     return {
-      status: "success",
-      message: "Catatan berhasil di perbarui",
+      status: 'success',
+      message: 'Catatan berhasil di perbarui',
     };
   }
 
@@ -65,8 +65,8 @@ class NotesHandler {
     await this._service.deleteNoteById(id);
 
     return {
-      status: "success",
-      message: "Catatan berhasil di hapus",
+      status: 'success',
+      message: 'Catatan berhasil di hapus',
     };
   }
 }
